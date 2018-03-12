@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #6589f9;
+    font-family: 'Bowlby One SC', cursive;
+}
+
+
+
+/* Clases establecidas en index.html */
+
+.cabecera {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inicio {
+    border: 8px solid yellow;
+    color: yellow;
+    font-size: 40px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Bowlby One SC', cursive;
+    background-color: #6589f9;
+    cursor: pointer;
+}
+
+#inicio:hover {
+    background-color:blue;
+}
+ 
+#reloj {
+    display: none;
+    color: yellow;
+    font-size: 40px;
+}
+
+.logo {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%,-50%); /* traslada elemento tomando como referencia su punto base (esquina superior izquierda) para que quede alineado en centro */
+    max-width: 80%;
+    z-index: 10;
+    transition: all 500ms ease-in-out;
+}
+
+.logo.open {
+    top: 50%;
+}
+
+#game-over {
+    width: 100%;
+    text-align: center;
+    color: yellow;
+    font-size: 140px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -10;
+    opacity: 0;
+    transition: 1000ms all ease-in-out;
+}
+
+
+
+/* Clases establecidas en main.js */
+
+.rejilla {
+    margin: 10px auto;
+    display: flex;
+    max-width: 1600px; /* tamaño máximo de rejilla (para evitar que los elementos se separen demasiado en pantallas grandes) */
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: all 1000ms ease-in-out;
+}
+
+.rejilla.fuera {
+    margin: -1000px auto;
+}
+
+.tarjeta { 
+    margin: 15px;
+    height: 150px;
+    width: 150px;
+/* 
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;  
+*/
+    transform-style: preserve-3d;
+    transition: all 400ms linear;
+    position: relative;
+}
+
+.anverso {
+    height: 150px;
+    width: 150px;
+    position: absolute; /* RECORDAR: padre (.'tarjeta') tiene que estar posicionado también */
+    background-image: url("../img/pokeball.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    backface-visibility: hidden; /* cara posterior no visible (para evitar que se superponga con imagen de .'reverso' al dar el giro */
+}
+
+.reverso {
+    height: 150px;
+    width: 150px;
+    position: absolute; /* RECORDAR: padre (.'tarjeta') tiene que estar posicionado también */
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.seleccionado { /* clase añadida a imagen (pokémon) al hacer click sobre él */
+/* 
+    border: 2px solid white; (estilo original de clase)
+*/
+    transform: rotateY(180deg); /* clase produce giro de 180 grados */
+}
+
+.eliminado .anverso { /* clase añadida a imagen (pokémon) cuando se hace doble click sobre él ('.anverso' es hijo de '.eliminado') */
+    background-image: none !important; /* declaración '!important' da prioridad al valor que acompaña sobre cualquier otro (en caso de discrepancia) */
+}
