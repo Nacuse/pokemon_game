@@ -14,7 +14,7 @@ body {
 /* Clases establecidas en index.html */
 
 .cabecera {
-    padding: 20px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
